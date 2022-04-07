@@ -14,6 +14,8 @@ public class GizmosFramework {
     private static final int PERIODIC_RATE = 60;
 
     private static volatile GizmoState gizmoState = GizmoState.DISABLED;
+    /** package-private */
+    static final TurtleWindow turtleWindow = new TurtleWindow();
 
     public static void createTrayIcon(Main main) {
         SystemTray tray = SystemTray.getSystemTray();
@@ -30,13 +32,13 @@ public class GizmosFramework {
                     case DISABLED:
                         gizmoState = GizmoState.ENABLED;
                         trayIcon.setToolTip("Gizmo Turned ON");
-                        main.getTurtleWindow().setVisible(true);
+                        turtleWindow.setVisible(true);
                         main.gizmoInit();
                         break;
                     case ENABLED:
                         gizmoState = GizmoState.DISABLED;
                         trayIcon.setToolTip("Gizmo Turned OFF");
-                        main.getTurtleWindow().setVisible(false);
+                        turtleWindow.setVisible(false);
                         main.gizmoExit();
                         break;
                     default:
@@ -59,7 +61,7 @@ public class GizmosFramework {
                             // No-Op
                             break;
                         case ENABLED:
-                            main.getTurtleWindow().repaint();
+                            turtleWindow.repaint();
                             main.gizmoPeriodic();
                     }
 
@@ -74,7 +76,7 @@ public class GizmosFramework {
     }
 
     public static void setupWindowClose(Main main) {
-        main.getTurtleWindow().addWindowListener(new WindowAdapter() {
+        turtleWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
@@ -87,7 +89,7 @@ public class GizmosFramework {
     static Map<Integer, Boolean> keyStates = new HashMap<>();
 
     public static void setupKeypressEvents(Main main) {
-        main.getTurtleWindow().addKeyListener(new KeyAdapter() {
+        turtleWindow.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 System.out.println(e.getKeyCode());

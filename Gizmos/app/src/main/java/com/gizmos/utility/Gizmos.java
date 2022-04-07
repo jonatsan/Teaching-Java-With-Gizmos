@@ -20,4 +20,8 @@ public class Gizmos {
     public static boolean getKeyPressed(Key key) {
         return GizmosFramework.keyStates.getOrDefault(key.keycode, false);
     }
+
+    public static void move(int deltaX, int deltaY) {
+        GizmosFramework.turtleWindow.move(deltaX, deltaY);
+    }
 }

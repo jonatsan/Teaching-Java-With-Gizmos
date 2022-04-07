@@ -1,19 +1,12 @@
 package com.gizmos;
 
 import com.gizmos.utility.GizmosFramework;
-import com.gizmos.utility.TurtleWindow;
 
 public class Main {
-    private final TurtleWindow turtleWindow;
-
-    public Main(TurtleWindow turtleWindow) {
-        this.turtleWindow = turtleWindow;
-    }
-
     public static void main(String[] args) {
         // Create a "Main" object and
         // store it in the variable called main.
-        Main main = new Main(new TurtleWindow());
+        Main main = new Main();
 
         // Create a tray icon that is
         // hooked up to send events to the main variable.
@@ -31,10 +24,6 @@ public class Main {
         // It's like sending a message to
         // the main variable, saying, "We're Ready!"
         main.start();
-    }
-
-    public TurtleWindow getTurtleWindow() {
-        return turtleWindow;
     }
 
     /**
