@@ -92,7 +92,6 @@ public class GizmosFramework {
         turtleWindow.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println(e.getKeyCode());
                 keyStates.put(e.getKeyCode(), true);
             }
 
