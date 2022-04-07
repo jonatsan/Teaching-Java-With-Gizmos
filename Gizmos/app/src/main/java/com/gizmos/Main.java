@@ -1,6 +1,6 @@
 package com.gizmos;
 
-import com.gizmos.utility.Gizmos;
+import com.gizmos.utility.GizmosFramework;
 import com.gizmos.utility.TurtleWindow;
 
 public class Main {
@@ -17,11 +17,15 @@ public class Main {
 
         // Create a tray icon that is
         // hooked up to send events to the main variable.
-        Gizmos.createTrayIcon(main);
+        GizmosFramework.createTrayIcon(main);
 
         // When the T.U.R.T.L.E. window is closed,
         // this exits the program.
-        Gizmos.setupWindowClose(main);
+        GizmosFramework.setupWindowClose(main);
+
+        // Register keypress listeners so that we
+        // know when a key is pressed or not.
+        GizmosFramework.setupKeypressEvents(main);
 
         // Call the start method.
         // It's like sending a message to
