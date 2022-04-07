@@ -1,7 +1,7 @@
 package com.gizmos.utility;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
+import java.awt.event.*;
 
 import javax.swing.JOptionPane;
 
@@ -30,11 +30,13 @@ public class Gizmos {
                     case DISABLED:
                         gizmoState = GizmoState.ENABLED;
                         trayIcon.setToolTip("Gizmo Turned ON");
+                        main.getTurtleWindow().setVisible(true);
                         main.gizmoInit();
                         break;
                     case ENABLED:
                         gizmoState = GizmoState.DISABLED;
                         trayIcon.setToolTip("Gizmo Turned OFF");
+                        main.getTurtleWindow().setVisible(false);
                         main.gizmoExit();
                         break;
                     default:
@@ -57,6 +59,7 @@ public class Gizmos {
                             // No-Op
                             break;
                         case ENABLED:
+                            main.getTurtleWindow().repaint();
                             main.gizmoPeriodic();
                     }
 
@@ -68,6 +71,15 @@ public class Gizmos {
                 }
             };
         }.start();
+    }
+
+    public static void setupWindowClose(Main main) {
+        main.getTurtleWindow().addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     /**
